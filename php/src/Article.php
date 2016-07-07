@@ -9,11 +9,6 @@ abstract class Article
      */
     protected $item;
 
-    public function __construct(Item $item)
-    {
-        $this->item = $item;
-    }
-
     abstract public function update();
 
     /**

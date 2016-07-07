@@ -4,6 +4,11 @@ namespace Arola\GildedRose;
 
 class BackstagePass extends Article
 {
+    public function __construct($sellIn, $quality)
+    {
+        $this->item = new Item('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality);
+    }
+
     public function update()
     {
         $this->decreaseSellIn($this->item);

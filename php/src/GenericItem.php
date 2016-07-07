@@ -4,6 +4,11 @@ namespace Arola\GildedRose;
 
 class GenericItem extends Article
 {
+    public function __construct($name, $sellIn, $quality)
+    {
+        $this->item = new Item($name, $sellIn, $quality);
+    }
+
     public function update()
     {
         $this->decreaseSellIn($this->item);
