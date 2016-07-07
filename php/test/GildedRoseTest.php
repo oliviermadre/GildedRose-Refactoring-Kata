@@ -180,6 +180,46 @@ class GildedRoseTest extends PHPUnit_Framework_TestCase {
     }
 
 
+    /**
+     * @test
+     */
+    function it_decreases_sell_in_value_if_not_sulfuras() {
+        /** @var Item[] $items */
+        $items = [ new Item("Whatever", 5, 10) ];
+        $gildedRose = $this->givenAGildedRose($items);
+
+        $gildedRose->update_quality();
+
+        $this->assertEquals(4, $items[0]->sell_in);
+    }
+
+
+    /**
+     * @test
+     */
+    function it_decreases_sell_in_value_of_aged_brie() {
+        /** @var Item[] $items */
+        $items = [ new Item("Aged Brie", 5, 10) ];
+        $gildedRose = $this->givenAGildedRose($items);
+
+        $gildedRose->update_quality();
+
+        $this->assertEquals(4, $items[0]->sell_in);
+    }
+
+
+    /**
+     * @test
+     */
+    function it_decreases_sell_in_value_of_backstage() {
+        /** @var Item[] $items */
+        $items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10) ];
+        $gildedRose = $this->givenAGildedRose($items);
+
+        $gildedRose->update_quality();
+
+        $this->assertEquals(4, $items[0]->sell_in);
+    }
 
     private function givenAGildedRose(array $items)
     {
