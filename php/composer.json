@@ -1,0 +1,19 @@
+{
+  "name": "regibelson/gildedrose",
+  "authors": [
+    {
+      "name": "Régis Belson",
+      "email": "regis@evaneos.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Arola\\GildedRose\\": "src",
+      "Arola\\Test\\GildedRose\\": "test"
+    }
+  }
+}
