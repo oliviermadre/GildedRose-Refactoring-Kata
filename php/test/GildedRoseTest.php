@@ -67,13 +67,25 @@ class GildedRoseTest extends PHPUnit_Framework_TestCase {
     /**
      * @test
      */
-    function it_increases_the_quality_of_aged_brie_if_its_quality_is_under_50() {
+    function it_increases_the_quality_of_aged_brie_by_1_if_its_quality_is_under_50_and_its_sell_date_has_not_passed() {
         /** @var Item[] $items */
         $items = [ new Item("Aged Brie", 5, 33) ];
         $gildedRose = $this->givenAGildedRose($items);
         $gildedRose->update_quality();
 
         $this->assertEquals(34, $items[0]->quality);
+    }
+
+    /**
+     * @test
+     */
+    function it_increases_the_quality_of_aged_brie_by_2_if_its_quality_is_under_50_and_its_sell_date_has_passed() {
+        /** @var Item[] $items */
+        $items = [ new Item("Aged Brie", -1, 33) ];
+        $gildedRose = $this->givenAGildedRose($items);
+        $gildedRose->update_quality();
+
+        $this->assertEquals(35, $items[0]->quality);
     }
 
     /**
@@ -86,6 +98,20 @@ class GildedRoseTest extends PHPUnit_Framework_TestCase {
         $gildedRose->update_quality();
 
         $this->assertEquals(50, $items[0]->quality);
+    }
+
+
+    /**
+     * @test
+     */
+    function it_increases_the_quality_of_concert_tickets_by_1_when_there_are_more_than_10_days_left() {
+        /** @var Item[] $items */
+        $items = [ new Item("Backstage passes to a TAFKAL80ETC concert", 8, 20) ];
+        $gildedRose = $this->givenAGildedRose($items);
+
+        $gildedRose->update_quality();
+
+        $this->assertEquals(22, $items[0]->quality);
     }
 
     /**
